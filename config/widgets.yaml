@@ -1,0 +1,24 @@
+- resources:
+    label: nigel
+    cpu: true
+    memory: true
+    disk: /
+    uptime: true
+
+- openmeteo:
+    label: Ave Maria
+    latitude: 26.3387
+    longitude: -81.4381
+    units: imperial
+    cache: 15
+
+- datetime:
+    text_size: md
+    format:
+      dateStyle: medium
+      timeStyle: short
+      hour12: true
+
+- search:
+    provider: google
+    target: _blank

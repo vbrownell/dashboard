@@ -1,0 +1,221 @@
+# Converted from Dashy (nigel:4000) on 2026-11-13.
+# siteMonitor = HTTP check from inside the container; ping = ICMP.
+# .local (mDNS) names can't be resolved from the container, so they have no monitor.
+
+- Infrastructure:
+    - Proxmox:
+        icon: proxmox.png
+        href: https://10.0.0.4:8006
+        description: pve
+        siteMonitor: https://10.0.0.4:8006
+        widget:
+          type: proxmox
+          url: https://10.0.0.4:8006
+          username: "{{HOMEPAGE_VAR_PVE_TOKEN_ID}}"
+          password: "{{HOMEPAGE_VAR_PVE_TOKEN_SECRET}}"
+          node: pve
+    - Proxmox Monitor:
+        icon: proxmox.png
+        href: http://10.0.0.4:8008/
+        siteMonitor: http://10.0.0.4:8008/
+    - Synology NAS:
+        icon: synology-dsm.png
+        href: https://nas.lan:5051
+        description: DS920+
+        siteMonitor: https://nas.lan:5051
+    - Nigel Portainer:
+        icon: portainer.png
+        href: https://10.0.0.5:9443
+        siteMonitor: https://10.0.0.5:9443
+    - Nigel Webmin:
+        icon: webmin.png
+        href: https://10.0.0.5:10000
+        siteMonitor: https://10.0.0.5:10000
+    - Nigel Console:
+        icon: mdi-console
+        href: http://nigel:8086/
+        siteMonitor: http://nigel:8086/
+    - pi-kvm:
+        icon: pikvm.png
+        href: https://10.0.0.80/kvm
+        siteMonitor: https://10.0.0.80/
+    - GL KVM:
+        icon: mdi-monitor-dashboard
+        href: https://glkvm.local/#/
+    - Incredible PBX:
+        icon: mdi-phone-voip
+        href: http://10.0.0.125/admin/config.php?display=index
+        siteMonitor: http://10.0.0.125/
+    - OpenClaw:
+        icon: mdi-robot-outline
+        href: https://openclaw.lan
+        siteMonitor: https://openclaw.lan
+    - Joplin Server:
+        icon: joplin.png
+        href: https://joplin.spotted-tarpon.ts.net/login
+        siteMonitor: https://joplin.lan/
+    - Joplin Web Client:
+        icon: joplin.png
+        href: https://joplin.spotted-tarpon.ts.net
+        siteMonitor: https://joplin.lan/
+    - OpenVPN:
+        icon: openvpn.png
+        href: https://10.0.0.7:943/admin
+        siteMonitor: https://10.0.0.7:943/admin
+    - SmokePing:
+        icon: mdi-chart-line
+        href: http://smoke/smokeping/?target=Local
+        siteMonitor: http://smoke/smokeping/
+    - Speedtest Tracker:
+        icon: speedtest-tracker.png
+        href: http://speedtest.lan/admin
+        siteMonitor: http://speedtest.lan/
+
+- Network:
+    - ER707 Router:
+        icon: mdi-router-network
+        href: http://10.0.0.1
+        ping: 10.0.0.1
+    - Omada Controller:
+        icon: mdi-access-point-network
+        href: https://10.0.0.146:8043/#dashboardGlobal
+        siteMonitor: https://10.0.0.146:8043
+    - Pi-hole:
+        icon: pi-hole.png
+        href: https://10.0.0.8/admin
+        description: Primary DNS
+        siteMonitor: https://10.0.0.8/admin
+        widget:
+          type: pihole
+          url: https://10.0.0.8
+          version: 6
+          key: "{{HOMEPAGE_VAR_PIHOLE1_KEY}}"
+    - Pi-hole 2:
+        icon: pi-hole.png
+        href: http://10.0.0.9/admin
+        description: Backup DNS
+        siteMonitor: http://10.0.0.9/admin
+        widget:
+          type: pihole
+          url: http://10.0.0.9
+          version: 6
+          key: "{{HOMEPAGE_VAR_PIHOLE2_KEY}}"
+    - RAX200 AP:
+        icon: mdi-wifi
+        href: http://10.0.0.2/start.htm
+        ping: 10.0.0.2
+    - ASUS Router:
+        icon: mdi-router-wireless
+        href: http://10.0.0.45/Main_Login.asp
+        description: Hidden network
+        ping: 10.0.0.45
+    - Modem:
+        icon: mdi-cable-data
+        href: http://192.168.100.1
+
+- Home & Media:
+    - Home Assistant:
+        icon: home-assistant.png
+        href: http://10.0.0.5:8123
+        siteMonitor: http://10.0.0.5:8123
+        widget:
+          type: homeassistant
+          url: http://10.0.0.5:8123
+          key: "{{HOMEPAGE_VAR_HA_TOKEN}}"
+          custom:
+            - template: "{{ states.person | selectattr('state','equalto','home') | list | length }}"
+              label: home
+            - template: "{{ states.light | selectattr('state','equalto','on') | list | length }}"
+              label: lights on
+            - template: "{{ states.update | selectattr('state','equalto','on') | list | length }}"
+              label: updates
+    - Jellyfin:
+        icon: jellyfin.png
+        href: http://10.0.0.83:8096/web/#/home
+        description: Library
+        siteMonitor: http://10.0.0.83:8096
+    - Jellyfin Admin:
+        icon: jellyfin.png
+        href: http://10.0.0.83:8096/web/#/dashboard
+        siteMonitor: http://10.0.0.83:8096
+    - Surveillance Station:
+        icon: mdi-cctv
+        href: https://nas.lan:5051/webman/3rdparty/SurveillanceStation/
+    - Denon AVR Office:
+        icon: mdi-amplifier
+        href: http://nigel:8187/
+        siteMonitor: http://nigel:8187/
+
+- Radio & Weather:
+    - KiwiSDR:
+        icon: mdi-radio-tower
+        href: http://kiwisdr.lan:8073/
+        ping: kiwisdr.lan  # its HTTP reply is non-standard and trips siteMonitor
+    - KiwiSDR Admin:
+        icon: mdi-radio-tower
+        href: http://kiwisdr.lan:8073/admin
+        ping: kiwisdr.lan
+    - AllScan (ASL3):
+        icon: mdi-radio-handheld
+        href: https://asl/allscan/
+        siteMonitor: https://asl/allscan/
+    - Pi-Star:
+        icon: mdi-access-point
+        href: http://10.0.0.20/admin/
+        siteMonitor: http://10.0.0.20/
+    - PiAware:
+        icon: mdi-airplane
+        href: http://10.0.0.155:8080/
+        siteMonitor: http://10.0.0.155:8080/
+    - HamClock:
+        icon: mdi-clock-digital
+        href: http://pi-hdmi:8081/live.html
+        siteMonitor: http://pi-hdmi:8081/live.html
+    - WeeWX (nigel):
+        icon: mdi-weather-partly-cloudy
+        href: http://10.0.0.5/weewx/
+        siteMonitor: http://10.0.0.5/weewx/
+    - Davis WeatherLink:
+        icon: mdi-weather-windy
+        href: https://www.weatherlink.com/bulletin/546f71cf-4a4d-4ef0-b230-7689e655cb62
+        description: WeatherLink Live (davis.lan)
+        ping: 10.0.0.133  # the WLL's HTTP API only answers WeeWX's poller, so HTTP checks fail
+    - LiveSectional:
+        icon: mdi-map-marker-radius
+        href: http://livesectional.lan/
+        siteMonitor: http://livesectional.lan/
+    - Local Maps:
+        icon: mdi-map
+        href: http://10.0.0.109:8091/
+        siteMonitor: http://10.0.0.109:8091/
+    - Garage NTP Clock:
+        icon: mdi-clock-outline
+        href: http://10.0.0.147
+        ping: 10.0.0.147
+
+- Lab & Toys:
+    - IMSAI 8080:
+        icon: mdi-chip
+        href: http://imsai8080.local/console/
+    - Hayes Chronograph:
+        icon: mdi-timer-outline
+        href: http://chronograph.local
+    - Rigol DHO924S:
+        icon: mdi-sine-wave
+        href: http://rigol.lan
+        siteMonitor: http://rigol.lan
+    - Nerd Miner:
+        icon: mdi-bitcoin
+        href: http://10.0.0.94/
+        ping: 10.0.0.94
+
+# Grotto tiles use pi-camper's Tailscale IP: nigel doesn't accept subnet routes, so 10.0.1.x is unreachable.
+- Grotto (RV):
+    - Grotto WeeWX:
+        icon: mdi-rv-truck
+        href: http://100.86.42.43/weewx/
+        siteMonitor: http://100.86.42.43/weewx/
+    - Grotto Jellyfin:
+        icon: jellyfin.png
+        href: http://100.86.42.43:8096/web/#/dashboard
+        siteMonitor: http://100.86.42.43:8096

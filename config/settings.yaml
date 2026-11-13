@@ -1,0 +1,28 @@
+title: W1VB Home Lab
+description: Vern's home lab and infrastructure
+theme: dark
+color: slate
+headerStyle: clean
+statusStyle: dot
+hideVersion: true
+target: _blank
+
+layout:
+  Infrastructure:
+    style: row
+    columns: 4
+  Network:
+    style: row
+    columns: 4
+  Home & Media:
+    style: row
+    columns: 4
+  Radio & Weather:
+    style: row
+    columns: 4
+  Lab & Toys:
+    style: row
+    columns: 4
+  Grotto (RV):
+    style: row
+    columns: 4
