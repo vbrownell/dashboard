@@ -1,6 +1,6 @@
 # Converted from Dashy (nigel:4000) on 2026-11-13.
 # siteMonitor = HTTP check from inside the container; ping = ICMP.
-# .local (mDNS) names can't be resolved from the container, so they have no monitor.
+# .local (mDNS) names can't be resolved from the container; use .lan names or IPs.
 
 - Infrastructure:
     - Proxmox:
@@ -41,7 +41,8 @@
         siteMonitor: https://10.0.0.80/
     - GL KVM:
         icon: mdi-monitor-dashboard
-        href: https://glkvm.local/#/
+        href: https://10.0.0.149/
+        siteMonitor: https://10.0.0.149/
     - Incredible PBX:
         icon: mdi-phone-voip
         href: http://10.0.0.125/admin/config.php?display=index
@@ -111,7 +112,9 @@
         ping: 10.0.0.45
     - Modem:
         icon: mdi-cable-data
-        href: http://192.168.100.1
+        href: http://192.168.100.1/
+        # No status check: the modem doesn't answer ping, and its login page sets a cookie that
+        # crashes Homepage v2.7.0 (TypeError ... setMaxAge, container restart loop). Don't add siteMonitor.
 
 # Netgear switches, same list and order as NETGEAR_SWITCHES in ~/bin/check-connections on the mini.
 - Switches:
@@ -184,6 +187,7 @@
     - Surveillance Station:
         icon: mdi-cctv
         href: https://nas.lan:5051/webman/3rdparty/SurveillanceStation/
+        siteMonitor: https://nas.lan:5051/webman/3rdparty/SurveillanceStation/
     - Denon AVR Office:
         icon: mdi-amplifier
         href: http://nigel:8187/
@@ -239,10 +243,12 @@
 - Lab & Toys:
     - IMSAI 8080:
         icon: mdi-chip
-        href: http://imsai8080.local/console/
+        href: http://imsai8080.lan/console/
+        ping: imsai8080.lan  # console rejects HEAD (405)
     - Hayes Chronograph:
         icon: mdi-timer-outline
-        href: http://chronograph.local
+        href: http://10.0.0.158/
+        ping: 10.0.0.158  # chronograph.local never resolved; ESP8266 web page takes ~15 s
     - Rigol DHO924S:
         icon: mdi-sine-wave
         href: http://rigol.lan

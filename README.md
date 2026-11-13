@@ -33,3 +33,7 @@ config as `{{HOMEPAGE_VAR_*}}`:
 - WeatherLink Live is davis.lan = 10.0.0.11 (ping check: it rejects HTTP HEAD with 400). 10.0.0.133 is the Garage Hub switch (nigel's
   ~/hosts.pihole.lan is stale on this).
 - Switches group mirrors NETGEAR_SWITCHES in ~/bin/check-connections on the mini.
+- **Modem (192.168.100.1) has no status check on purpose:** it doesn't answer ping, and its
+  login page's cookie crashes Homepage v2.7.0 (`setMaxAge` TypeError, restart loop).
+- IMSAI and Hayes Chronograph use ping (IMSAI rejects HEAD; the Chronograph's ESP8266 page
+  takes ~15 s). GL KVM is 10.0.0.149, IMSAI 10.0.0.114, Chronograph 10.0.0.158.
