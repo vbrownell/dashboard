@@ -1,6 +1,7 @@
 # Homepage dashboard (nigel:3000)
 
-Home lab dashboard, replacing Dashy (nigel:4000). Runs [Homepage](https://gethomepage.dev)
+Home lab dashboard. Replaced Dashy (nigel:4000), retired 2026-11-13: container `dashy`
+stopped with restart=no, config kept in `~/dashy-data/`. Runs [Homepage](https://gethomepage.dev)
 as a Docker container on nigel.
 
 - Start / restart: `sudo sh ~/homepage/run-homepage.sh`
