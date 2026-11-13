@@ -113,6 +113,49 @@
         icon: mdi-cable-data
         href: http://192.168.100.1
 
+# Netgear switches, same list and order as NETGEAR_SWITCHES in ~/bin/check-connections on the mini.
+- Switches:
+    - Garage Hub:
+        icon: mdi-switch
+        href: http://10.0.0.133/
+        description: GS308E · 10.0.0.133
+        siteMonitor: http://10.0.0.133/
+    - Data Rack:
+        icon: mdi-switch
+        href: http://10.0.0.111/
+        description: GS308T · 10.0.0.111
+        siteMonitor: http://10.0.0.111/
+    - Office Desk 1:
+        icon: mdi-switch
+        href: http://10.0.0.132/
+        description: GS108PEv3 · 10.0.0.132
+        siteMonitor: http://10.0.0.132/
+    - Office Desk 2:
+        icon: mdi-switch
+        href: http://10.0.0.113/
+        description: GS105PE · 10.0.0.113
+        siteMonitor: http://10.0.0.113/
+    - Top Shelf 1:
+        icon: mdi-switch
+        href: http://10.0.0.196/
+        description: GS108Ev3 · 10.0.0.196
+        siteMonitor: http://10.0.0.196/
+    - Top Shelf 2:
+        icon: mdi-switch
+        href: http://10.0.0.198/
+        description: GS108Ev3 · 10.0.0.198
+        siteMonitor: http://10.0.0.198/
+    - Attic:
+        icon: mdi-switch
+        href: http://10.0.0.131/
+        description: GS108Ev3 · 10.0.0.131
+        siteMonitor: http://10.0.0.131/
+    - Living Room AV:
+        icon: mdi-switch
+        href: http://10.0.0.136/
+        description: GS108Ev3 · 10.0.0.136
+        siteMonitor: http://10.0.0.136/
+
 - Home & Media:
     - Home Assistant:
         icon: home-assistant.png
@@ -179,7 +222,7 @@
         icon: mdi-weather-windy
         href: https://www.weatherlink.com/bulletin/546f71cf-4a4d-4ef0-b230-7689e655cb62
         description: WeatherLink Live (davis.lan)
-        ping: 10.0.0.133  # the WLL's HTTP API only answers WeeWX's poller, so HTTP checks fail
+        ping: davis.lan  # the WLL answers GET but rejects HEAD (400), which siteMonitor uses
     - LiveSectional:
         icon: mdi-map-marker-radius
         href: http://livesectional.lan/

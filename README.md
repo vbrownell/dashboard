@@ -29,5 +29,7 @@ config as `{{HOMEPAGE_VAR_*}}`:
 - `HOMEPAGE_ALLOWED_HOSTS` must list every hostname:port used to open the page.
 - Grotto (RV) tiles use pi-camper's Tailscale IP (100.86.42.43): nigel doesn't accept
   Tailscale subnet routes, so the camper LAN (10.0.1.x) isn't reachable from here.
-- Ping instead of HTTP checks: KiwiSDR (non-standard HTTP reply) and the WeatherLink Live
-  (its HTTP API only answers WeeWX's poller).
+- KiwiSDR uses a ping check (its HTTP reply is non-standard and breaks siteMonitor).
+- WeatherLink Live is davis.lan = 10.0.0.11 (ping check: it rejects HTTP HEAD with 400). 10.0.0.133 is the Garage Hub switch (nigel's
+  ~/hosts.pihole.lan is stale on this).
+- Switches group mirrors NETGEAR_SWITCHES in ~/bin/check-connections on the mini.
